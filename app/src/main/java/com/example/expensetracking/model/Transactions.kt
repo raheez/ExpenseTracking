@@ -15,7 +15,7 @@ data class Transactions(
     var title:String,
 
     @ColumnInfo(name = "amount")
-    var amount: String
+    var amount: Int
 ) :java.io.Serializable{
 
 }
