@@ -1,10 +1,11 @@
-package com.example.expensetracking
+package com.example.expensetracking.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.expensetracking.data.AppDatabase
 import com.example.expensetracking.databinding.ActivityMainBinding
 import com.example.expensetracking.model.Transactions
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     @Inject lateinit var mDb :AppDatabase
     var mAmount = 100
     var mId = 1
+    val mViewmodel : TransactionViewmodel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,12 +32,8 @@ class MainActivity : AppCompatActivity() {
             mId = mId+1
             val mTransactions = Transactions(mId,"food${mId}",mAmount)
             lifecycleScope.launch {
-                mDb.getTransactionDao().insertTransaction(mTransactions)
+               mViewmodel.addItem(mTransactions)
             }
         }
-    }
-
-    private fun createDatabase(){
-        mDb = Room.databaseBuilder(this,AppDatabase::class.java,"transaction.db").fallbackToDestructiveMigration().build()
     }
 }
