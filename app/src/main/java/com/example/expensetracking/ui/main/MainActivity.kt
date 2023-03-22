@@ -1,23 +1,17 @@
-package com.example.expensetracking.ui
+package com.example.expensetracking.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.room.Room
 import com.example.expensetracking.R
 import com.example.expensetracking.data.AppDatabase
 import com.example.expensetracking.databinding.ActivityMainBinding
-import com.example.expensetracking.databinding.FragmentDashboardBinding
-import com.example.expensetracking.model.Transactions
+import com.example.expensetracking.ui.TransactionViewmodel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
