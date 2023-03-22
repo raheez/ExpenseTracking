@@ -10,6 +10,7 @@ import com.example.expensetracking.ui.TransactionViewmodel
 import com.example.expensetracking.ui.base.BaseFragment
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding,TransactionViewmodel>() {
+
     override val viewModel: TransactionViewmodel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
