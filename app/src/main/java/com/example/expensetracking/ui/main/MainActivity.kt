@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.expensetracking.R
 import com.example.expensetracking.data.AppDatabase
 import com.example.expensetracking.databinding.ActivityMainBinding
-import com.example.expensetracking.ui.TransactionViewmodel
+import com.example.expensetracking.ui.main.viewmodel.TransactionViewmodel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mBinding?.root)
+        setContentView(mBinding.root)
 
         initView(mBinding)
         observeNavElements(mBinding,navHostFragment.navController)

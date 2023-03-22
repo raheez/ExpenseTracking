@@ -17,7 +17,6 @@ abstract class BaseFragment<VB : ViewBinding,VM : ViewModel> :Fragment(){
     private var _binding : VB?=null
     protected val binding get() = _binding!!
     protected abstract val viewModel: VM
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

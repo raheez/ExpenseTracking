@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.expensetracking.R
 import com.example.expensetracking.databinding.FragmentDashboardBinding
-import com.example.expensetracking.ui.TransactionViewmodel
+import com.example.expensetracking.ui.main.viewmodel.TransactionViewmodel
 import com.example.expensetracking.ui.base.BaseFragment
 
-class DashboardFragment : BaseFragment<FragmentDashboardBinding,TransactionViewmodel>() {
+class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionViewmodel>() {
 
     override val viewModel: TransactionViewmodel by viewModels()
 
@@ -22,13 +21,16 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding,TransactionViewm
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initListeners()
     }
 
     private fun initListeners() {
         binding.btnDetail?.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_transactionDetailFragment)
+        }
+
+        binding.btnAdd?.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_addTransactionFragment)
         }
     }
 

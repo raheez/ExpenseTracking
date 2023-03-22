@@ -18,7 +18,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            app:titleTextColor="@android:color/holo_blue_bright"/>
+            app:titleTextColor="@android:color/holo_blue_bright"
+            />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.fragment.app.FragmentContainerView
