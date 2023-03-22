@@ -10,6 +10,7 @@ import com.example.expensetracking.databinding.FragmentAddTransactionBinding
 import com.example.expensetracking.model.Transactions
 import com.example.expensetracking.ui.main.viewmodel.TransactionViewmodel
 import com.example.expensetracking.ui.base.BaseFragment
+import com.example.expensetracking.utils.viewState.DetailState
 
 
 class AddTransactionFragment : BaseFragment<FragmentAddTransactionBinding, TransactionViewmodel>() {
@@ -17,7 +18,6 @@ class AddTransactionFragment : BaseFragment<FragmentAddTransactionBinding, Trans
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
     override val viewModel: TransactionViewmodel by activityViewModels()
     var mAmount = 100
     var mId = 1
