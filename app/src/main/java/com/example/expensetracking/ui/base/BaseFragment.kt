@@ -17,19 +17,17 @@ abstract class BaseFragment<VB : ViewBinding,VM : ViewModel> :Fragment(){
     private var _binding : VB?=null
     protected val binding get() = _binding!!
     protected abstract val viewModel: VM
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
         _binding = getViewBinding(inflater,container)
         return _binding?.root
 
     }
 
-    protected abstract fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB?
+    protected abstract fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
 
     fun toast(message: String){
         Toast.makeText(activity,message,Toast.LENGTH_SHORT).show()

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ExpenseTracking</string>
     <string name="text_dashboard">dashboard</string>
+    <string name="detail_fragment">transaction detail fragment</string>
+    <string name="add_transaction_fragment">add transaction fragment</string>
 </resources>
