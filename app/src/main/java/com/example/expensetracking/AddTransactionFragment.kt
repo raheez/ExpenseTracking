@@ -15,12 +15,14 @@ import com.example.expensetracking.utils.viewState.DetailState
 
 class AddTransactionFragment : BaseFragment<FragmentAddTransactionBinding, TransactionViewmodel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override val viewModel: TransactionViewmodel by activityViewModels()
     var mAmount = 100
     var mId = 1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
