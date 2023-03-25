@@ -17,19 +17,8 @@
             android:layout_height="wrap_content"
             >
 
-
-        <Button
-            android:id="@+id/btn_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="go to detail"
-            android:layout_centerHorizontal="true"
-            >
-        </Button>
-
         <Button
             android:id="@+id/btn_add"
-            android:layout_below="@+id/btn_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="add"

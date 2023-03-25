@@ -7,9 +7,22 @@
     android:background="@android:color/holo_green_dark">
 
     <TextView
+        android:id="@+id/transaction_amount_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/detail_fragment"
-        android:layout_centerInParent="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        tools:text="500"
+        >
+    </TextView>
 
+    <TextView
+        android:id="@+id/transaction_type_tv"
+        android:layout_below="@id/transaction_amount_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        tools:text="income"
+        >
+    </TextView>
 </RelativeLayout>

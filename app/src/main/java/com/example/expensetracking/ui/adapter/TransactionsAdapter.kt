@@ -38,12 +38,25 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.Transaction
 
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
 
+        val item = differ.currentList[position]
         holder.binding.apply {
+
             differ.currentList.get(position).let {
-                amountTv.setText(it.amount?.toString() ?: "")
-                typeTv.setText(it.transactionType?.toString()?:"")
+                amountTv.setText(it.amount.toString() ?: "")
+                typeTv.setText(it.transactionType.toString()?:"")
             }
+
+            holder.itemView.setOnClickListener {
+                onItemClickListener?.let { it(item) }
+            }
+
         }
     }
+
+    private var onItemClickListener: ((Transactions)->Unit) ? =null
+     fun setOnClickListener(listener: (Transactions) -> Unit) {
+        onItemClickListener = listener
+    }
+
 
 }

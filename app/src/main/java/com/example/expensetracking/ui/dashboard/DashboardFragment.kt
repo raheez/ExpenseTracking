@@ -29,16 +29,27 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setRecyclerView()
+        initViews()
         initListeners()
         observeFilter()
-        setRecyclerView()
         observeTransaction()
     }
+
+
 
     private fun setRecyclerView() {
         mAdapter = TransactionsAdapter()
         binding.rvTransactions.adapter = mAdapter
         binding.rvTransactions.layoutManager = LinearLayoutManager(requireActivity())
+    }
+    private fun initViews() {
+        mAdapter.setOnClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("transactions",it)
+            }
+            findNavController().navigate(R.id.action_dashboardFragment_to_transactionDetailFragment,bundle)
+        }
     }
 
 
@@ -91,10 +102,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionView
     }
 
     private fun initListeners() {
-
-        binding.btnDetail.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_transactionDetailFragment)
-        }
 
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_addTransactionFragment)
