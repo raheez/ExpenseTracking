@@ -9,8 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensetracking.R
 import com.example.expensetracking.databinding.FragmentDashboardBinding
+import com.example.expensetracking.ui.adapter.TransactionsAdapter
 import com.example.expensetracking.ui.main.viewmodel.TransactionViewmodel
 import com.example.expensetracking.ui.base.BaseFragment
 import com.example.expensetracking.utils.viewState.ViewState
@@ -20,7 +22,7 @@ import kotlinx.coroutines.launch
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionViewmodel>() {
 
     override val viewModel: TransactionViewmodel by activityViewModels()
-
+    lateinit var mAdapter: TransactionsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -29,14 +31,37 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionView
         super.onViewCreated(view, savedInstanceState)
         initListeners()
         observeFilter()
+        setRecyclerView()
         observeTransaction()
+    }
+
+    private fun setRecyclerView() {
+        mAdapter = TransactionsAdapter()
+        binding.rvTransactions.adapter = mAdapter
+        binding.rvTransactions.layoutManager = LinearLayoutManager(requireActivity())
     }
 
 
     private fun observeFilter() {
 
         lifecycleScope.launch {
-            viewModel.getAllTransactions("expense")
+
+            viewModel.transactionFilter?.collect{
+                filter->
+                when(filter){
+                    "Overall"->{
+
+                    }
+                    "icome"->{
+
+                    }
+                    "expense"->{
+
+                    }
+                }
+                viewModel.getAllTransactions(filter)
+
+            }
         }
     }
 
@@ -58,19 +83,35 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionView
                     for (a in uiState.transactions){
                         Log.d("list_is","title "+a.title + "amount" + a.amount+ "\n")
                     }
+                    mAdapter.differ.submitList(uiState.transactions)
+
                 }
             }
         }
     }
 
     private fun initListeners() {
-        binding.btnDetail?.setOnClickListener {
+
+        binding.btnDetail.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_transactionDetailFragment)
         }
 
-        binding.btnAdd?.setOnClickListener {
+        binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_addTransactionFragment)
         }
+
+        binding.btnOverall.setOnClickListener {
+            viewModel.overAll()
+        }
+
+        binding.btnIncome.setOnClickListener {
+            viewModel.allIncome()
+        }
+
+        binding.btnExpense.setOnClickListener {
+            viewModel.allExpense()
+        }
+
     }
 
 

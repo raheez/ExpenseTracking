@@ -19,6 +19,9 @@ class TransactionViewmodel @Inject constructor( val mRepo : TransactionRepo)  : 
     private val _uiState = MutableStateFlow<ViewState>(ViewState.Loading)
     val uiState :StateFlow<ViewState> = _uiState
 
+    private val _transactionFilter = MutableStateFlow("Overall")
+    val transactionFilter = _transactionFilter
+
 
     fun addNewTransaction(transactions: Transactions){
         viewModelScope.launch(){
@@ -35,6 +38,19 @@ class TransactionViewmodel @Inject constructor( val mRepo : TransactionRepo)  : 
                 _uiState.value = ViewState.Success(result)
             }
         }
+    }
+
+
+    fun allIncome(){
+        _transactionFilter.value = "income"
+    }
+
+    fun allExpense(){
+        _transactionFilter.value = "expense"
+    }
+
+    fun overAll(){
+        _transactionFilter.value = "Overall"
     }
 
 }
