@@ -6,26 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensetracking.R
 import com.example.expensetracking.databinding.FragmentDashboardBinding
 import com.example.expensetracking.ui.adapter.TransactionsAdapter
-import com.example.expensetracking.ui.main.viewmodel.TransactionViewmodel
 import com.example.expensetracking.ui.base.BaseFragment
+import com.example.expensetracking.ui.main.viewmodel.TransactionViewmodel
 import com.example.expensetracking.utils.viewState.ViewState
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionViewmodel>() {
 
     override val viewModel: TransactionViewmodel by activityViewModels()
     lateinit var mAdapter: TransactionsAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,8 +52,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionView
 
         lifecycleScope.launch {
 
-            viewModel.transactionFilter?.collect{
-                filter->
+            viewModel.transactionFilter.collect{ filter->
                 when(filter){
                     "Overall"->{
 
@@ -77,7 +71,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionView
     }
 
 
-    private fun observeTransaction()  =lifecycleScope?.launch {
+    private fun observeTransaction()  =lifecycleScope.launch {
         viewModel.uiState.collect(){
             uiState->
             when(uiState){
@@ -103,7 +97,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionView
 
     private fun initListeners() {
 
-        binding.btnAdd.setOnClickListener {
+        binding.btnAddTransaction.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_addTransactionFragment)
         }
 

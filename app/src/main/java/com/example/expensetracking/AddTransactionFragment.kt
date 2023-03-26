@@ -33,7 +33,7 @@ class AddTransactionFragment : BaseFragment<FragmentAddTransactionBinding, Trans
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.addTransactionButton.setOnClickListener {
+        binding.btnSaveTransaction.setOnClickListener {
 
             mAmount = mAmount + 100
             mId = mId+1
