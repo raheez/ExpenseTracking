@@ -1,3 +1,0 @@
-com.example.expensetracking.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
