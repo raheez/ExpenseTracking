@@ -34,11 +34,14 @@
         <argument
             android:name="transactions"
             app:argType="com.example.expensetracking.model.Transactions" />
+        <action
+            android:id="@+id/action_transactionDetailFragment_to_editTransactionFragment"
+            app:destination="@id/editTransactionFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/addTransactionFragment"
-        android:name="com.example.expensetracking.ui.addTransaction.AddTransactionFragment"
+        android:name="com.example.expensetracking.ui.add.AddTransactionFragment"
         android:label="add transaction"
         tools:layout="@layout/fragment_add_transaction" >
         <action
@@ -46,6 +49,15 @@
             app:destination="@id/dashboardFragment"
             app:popUpTo="@id/dashboardFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTransactionFragment"
+        android:name="com.example.expensetracking.ui.edit.EditTransactionFragment"
+        android:label="edit transaction"
+        tools:layout="@layout/fragment_edit_transaction" >
+        <argument
+            android:name="transactions"
+            app:argType="com.example.expensetracking.model.Transactions" />
     </fragment>
 
 </navigation>

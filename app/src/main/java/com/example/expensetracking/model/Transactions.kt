@@ -8,23 +8,31 @@ import java.text.DateFormat
 @Entity(tableName = "all_transactions")
 data class Transactions(
 
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var mID: Int,
-
     @ColumnInfo(name = "title")
     var title: String,
 
     @ColumnInfo(name = "amount")
-    var amount: Int,
+    var amount: Double,
+
+    @ColumnInfo(name = "transactionType")
+    var transactionType: String,
+
+    @ColumnInfo(name = "tag")
+    var tag: String,
+
+    @ColumnInfo(name = "date")
+    var date: String,
+
+    @ColumnInfo(name = "note")
+    var note: String,
 
     @ColumnInfo(name = "createdAt")
     var createdAt: Long =
         System.currentTimeMillis(),
 
-    @ColumnInfo(name = "transactionType")
-    var transactionType: String,
-
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var mID: Int =0,
     ) : java.io.Serializable {
     val createdAtDateFormat: String
         get() = DateFormat.getDateTimeInstance()

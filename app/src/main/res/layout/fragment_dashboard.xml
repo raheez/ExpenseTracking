@@ -1,61 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_dark"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/header_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="add"
-            android:layout_centerHorizontal="true"
-            >
-        </Button>
+            <Button
+                android:id="@+id/btn_overall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="Overall"
+                android:layout_marginRight="1dp"
+                ></Button>
 
-        <Button
-            android:id="@+id/btn_overall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Overall"
-            android:layout_alignParentRight="true"
-            >
-        </Button>
+            <Button
+                android:id="@+id/btn_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_overall"
+                android:layout_alignParentRight="true"
+                android:text="income"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                ></Button>
 
-        <Button
-            android:id="@+id/btn_income"
-            android:layout_below="@+id/btn_overall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="income"
-            android:layout_alignParentRight="true"
-            >
-        </Button>
+            <Button
+                android:id="@+id/btn_expense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_income"
+                android:layout_alignParentRight="true"
+                android:text="expense"
+                android:layout_marginLeft="1dp"
+                ></Button>
 
-        <Button
-            android:id="@+id/btn_expense"
-            android:layout_below="@+id/btn_income"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="expense"
-            android:layout_alignParentRight="true"
-            >
-        </Button>
-
-        </RelativeLayout>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_transactions"
@@ -63,11 +56,23 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/header_container"
             android:layout_marginTop="20dp"
-            android:background="@android:color/holo_blue_bright"
             >
 
         </androidx.recyclerview.widget.RecyclerView>
 
-    </RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_add_transaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/dimen_32"
+            android:backgroundTint="@color/blue_500"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_baseline_add"
+            app:borderWidth="0dp"
+            app:tint="@color/white"
+            tools:ignore="UnusedAttribute" />
 
+    </RelativeLayout>
 </LinearLayout>

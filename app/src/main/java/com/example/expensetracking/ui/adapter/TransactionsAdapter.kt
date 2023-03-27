@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.SurfaceControl.Transaction
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.expensetracking.R
 import com.example.expensetracking.databinding.AdapterTransactionsListItemBinding
 import com.example.expensetracking.model.Transactions
 
@@ -42,14 +44,22 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.Transaction
         holder.binding.apply {
 
             differ.currentList.get(position).let {
-                amountTv.setText(it.amount.toString() ?: "")
-                typeTv.setText(it.transactionType.toString()?:"")
+                transactionAmount.setText(it.amount.toString() ?: "")
+                transactionName.setText(it.title.toString()?:"")
             }
 
             holder.itemView.setOnClickListener {
                 onItemClickListener?.let { it(item) }
             }
 
+            when(item.transactionType){
+                "income"->{
+                    transactionAmount.setTextColor(ContextCompat.getColor(transactionAmount.context,R.color.income))
+                }
+                "expense"->{
+                    transactionAmount.setTextColor(ContextCompat.getColor(transactionAmount.context,R.color.expense))
+                }
+            }
         }
     }
 
