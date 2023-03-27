@@ -132,21 +132,3 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionView
     }
 
 }
-
-
-//working logic
-//class DashboardFragment :Fragment(){
-//
-//    lateinit var mDashboardBinding: FragmentDashboardBinding
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//
-//        mDashboardBinding = FragmentDashboardBinding.inflate(layoutInflater)
-//        return mDashboardBinding.root
-////        return super.onCreateView(inflater, container, savedInstanceState)
-//
-//    }
-//}

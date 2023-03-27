@@ -1,4 +1,4 @@
-package com.example.expensetracking
+package com.example.expensetracking.ui.addTransaction
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/addTransactionFragment"
-        android:name="com.example.expensetracking.AddTransactionFragment"
+        android:name="com.example.expensetracking.ui.addTransaction.AddTransactionFragment"
         android:label="add transaction"
         tools:layout="@layout/fragment_add_transaction" >
         <action
