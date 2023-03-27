@@ -25,4 +25,6 @@
     <string name="text_filter">Filter</string>
     <string name="text_edit">Edit</string>
     <string name="text_createdAt">Created At</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="edit_transaction_title">edit transaction</string>
 </resources>

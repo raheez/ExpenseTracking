@@ -6,7 +6,7 @@ import com.example.expensetracking.model.Transactions
 sealed class DetailState {
     object Loading : DetailState()
     object Empty : DetailState()
-    data class Success(val transactions: List<Transactions>): DetailState()
+    data class Success(val transactions: Transactions): DetailState()
     data class Error(val exception: Throwable) : DetailState()
 
 }
