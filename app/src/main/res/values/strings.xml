@@ -27,4 +27,5 @@
     <string name="text_createdAt">Created At</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="edit_transaction_title">edit transaction</string>
+    <string name="text_undo">Undo</string>
 </resources>

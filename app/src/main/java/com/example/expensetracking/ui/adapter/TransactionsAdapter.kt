@@ -17,12 +17,14 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.Transaction
 
     private val differCallback = object : DiffUtil.ItemCallback<Transactions>(){
         override fun areItemsTheSame(oldItem: Transactions, newItem: Transactions): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem === newItem || oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Transactions, newItem: Transactions): Boolean {
             return oldItem == newItem
         }
+
+
     }
 
     val differ = AsyncListDiffer(this,differCallback)
