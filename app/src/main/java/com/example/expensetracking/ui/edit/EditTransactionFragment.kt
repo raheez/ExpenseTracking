@@ -17,23 +17,18 @@ import com.example.expensetracking.utils.viewState.Constants
 import com.example.expensetracking.utils.viewState.transformIntoDatePicker
 import java.lang.Double
 import java.util.*
+import kotlin.apply
+import kotlin.getValue
+import kotlin.isNaN
+import kotlin.let
+import kotlin.toString
+import kotlin.with
 
 class EditTransactionFragment : BaseFragment<FragmentEditTransactionBinding,TransactionViewmodel>() {
 
     private val args : EditTransactionFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override val viewModel: TransactionViewmodel by activityViewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_edit_transaction, container, false)
-    }
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -44,9 +39,12 @@ class EditTransactionFragment : BaseFragment<FragmentEditTransactionBinding,Tran
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val transaction = args.transactions
         initViews()
-        loadData()
+        loadData(transaction)
     }
+
+
 
 
     private fun initViews() {
@@ -77,7 +75,7 @@ class EditTransactionFragment : BaseFragment<FragmentEditTransactionBinding,Tran
 
         binding.btnSaveTransaction.setOnClickListener {
 
-            binding.addTransactionLayout?.apply {
+            binding.addTransactionLayout.apply {
 
                 val transactions = getTransactionContent()
                 transactions.let {
@@ -102,10 +100,8 @@ class EditTransactionFragment : BaseFragment<FragmentEditTransactionBinding,Tran
                         }
 
                         else -> {
-                            viewModel.addNewTransaction(transactions = transactions)
-                            findNavController().navigate(
-                                R.id.action_addTransactionFragment_to_dashboardFragment
-                            )
+                            viewModel.updateTransaction(transactions = transactions)
+                            findNavController().popBackStack()
                         }
                     }
                 }
@@ -115,7 +111,15 @@ class EditTransactionFragment : BaseFragment<FragmentEditTransactionBinding,Tran
 
     }
 
-    private fun loadData() {
+    private fun loadData(transaction: Transactions) {
+        with(binding) {
+            addTransactionLayout.etTitle.setText(transaction.title)
+            addTransactionLayout.etAmount.setText(transaction.amount.toString())
+            addTransactionLayout.etTransactionType.setText(transaction.transactionType, false)
+            addTransactionLayout.etTag.setText(transaction.tag, false)
+            addTransactionLayout.etWhen.setText(transaction.date)
+            addTransactionLayout.etNote.setText(transaction.note)
+        }
 
     }
 
@@ -126,7 +130,8 @@ class EditTransactionFragment : BaseFragment<FragmentEditTransactionBinding,Tran
         val tag = it.etTag.text.toString()
         val date = it.etWhen.text.toString()
         val note = it.etNote.text.toString()
-        return Transactions(title, amount, transactionType, tag, date, note)
+        val id = args.transactions.mID
+        return Transactions(title, amount, transactionType, tag, date,note, createdAt = System.currentTimeMillis(),id)
     }
 
 }
