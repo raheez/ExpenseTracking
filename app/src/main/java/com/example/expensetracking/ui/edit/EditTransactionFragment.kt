@@ -130,7 +130,7 @@ class EditTransactionFragment : BaseFragment<FragmentEditTransactionBinding,Tran
         val tag = it.etTag.text.toString()
         val date = it.etWhen.text.toString()
         val note = it.etNote.text.toString()
-        val id = args.transactions.mID
+        val id = args.transactions.id
         return Transactions(title, amount, transactionType, tag, date,note, createdAt = System.currentTimeMillis(),id)
     }
 

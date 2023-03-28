@@ -1,8 +1,6 @@
 package com.example.expensetracking.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.SurfaceControl.Transaction
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -19,7 +17,7 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.Transaction
 
     private val differCallback = object : DiffUtil.ItemCallback<Transactions>(){
         override fun areItemsTheSame(oldItem: Transactions, newItem: Transactions): Boolean {
-            return oldItem.mID == newItem.mID
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Transactions, newItem: Transactions): Boolean {
@@ -46,6 +44,7 @@ class TransactionsAdapter : RecyclerView.Adapter<TransactionsAdapter.Transaction
             differ.currentList.get(position).let {
                 transactionAmount.setText(it.amount.toString() ?: "")
                 transactionName.setText(it.title.toString()?:"")
+                transactionCategory.setText(it.tag.toString()?:"")
             }
 
             holder.itemView.setOnClickListener {

@@ -32,7 +32,7 @@ data class Transactions(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var mID: Int =0,
+    var id: Int =0,
     ) : java.io.Serializable {
     val createdAtDateFormat: String
         get() = DateFormat.getDateTimeInstance()

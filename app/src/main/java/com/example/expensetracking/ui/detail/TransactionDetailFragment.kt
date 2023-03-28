@@ -15,7 +15,6 @@ import com.example.expensetracking.model.Transactions
 import com.example.expensetracking.ui.base.BaseFragment
 import com.example.expensetracking.ui.main.viewmodel.TransactionViewmodel
 import com.example.expensetracking.utils.viewState.DetailState
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -42,7 +41,7 @@ class TransactionDetailFragment : BaseFragment<FragmentTransactionDetailBinding,
     private fun initViews() {
         Log.d("detail_screen","initialised")
         val transactions = args.transactions
-        getTransaction(transactions.mID)
+        getTransaction(transactions.id)
         observeTransaction()
     }
 
@@ -72,7 +71,7 @@ class TransactionDetailFragment : BaseFragment<FragmentTransactionDetailBinding,
         tag.text = transactions.tag
         date.text = transactions.date
         note.text = transactions.note
-        createdAt.text = transactions.createdAt.toString()
+        createdAt.text = transactions.createdAtDateFormat
 
         val bundle =Bundle().apply {
             putSerializable("transactions",transactions)
