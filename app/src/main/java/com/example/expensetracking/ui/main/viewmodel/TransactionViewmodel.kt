@@ -33,6 +33,12 @@ class TransactionViewmodel @Inject constructor( val mRepo : TransactionRepo)  : 
         }
     }
 
+    fun updateTransaction(transactions: Transactions){
+        viewModelScope.launch(){
+            mRepo.update(transactions)
+        }
+    }
+
     fun getTransactionByID(id : Int){
         _detailState.value = DetailState.Loading
         viewModelScope.launch {

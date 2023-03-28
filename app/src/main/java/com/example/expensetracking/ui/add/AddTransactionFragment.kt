@@ -56,7 +56,6 @@ class AddTransactionFragment : BaseFragment<FragmentAddTransactionBinding, Trans
             Constants.transactionTags
         )
 
-
         with(binding) {
 
             addTransactionLayout.etTransactionType.setAdapter(transactionTypeAdapter)
@@ -71,27 +70,6 @@ class AddTransactionFragment : BaseFragment<FragmentAddTransactionBinding, Trans
         }
 
         binding.btnSaveTransaction.setOnClickListener {
-
-//            mAmount = mAmount + 100
-//            mId = mId + 1
-//            var mStrType = ""
-//            if (mId % 2 == 0) {
-//                mStrType = "income"
-//            } else {
-//                mStrType = "expense"
-//            }
-//
-//            val mTransactions = Transactions(
-//                "food${mId}",
-//                mAmount,
-//                mStrType,
-//                "",
-//                "",
-//                "",
-//                System.currentTimeMillis(),
-//                mId
-//            )
-
 
             binding.addTransactionLayout?.apply {
 

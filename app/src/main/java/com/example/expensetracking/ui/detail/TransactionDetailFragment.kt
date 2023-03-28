@@ -1,6 +1,7 @@
 package com.example.expensetracking.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,11 +40,8 @@ class TransactionDetailFragment : BaseFragment<FragmentTransactionDetailBinding,
 
 
     private fun initViews() {
+        Log.d("detail_screen","initialised")
         val transactions = args.transactions
-        binding.transactionDetails.let {
-            it.amount.text = transactions.amount.toString()
-            it.type.text = transactions.transactionType
-        }
         getTransaction(transactions.mID)
         observeTransaction()
     }
@@ -76,20 +74,25 @@ class TransactionDetailFragment : BaseFragment<FragmentTransactionDetailBinding,
         note.text = transactions.note
         createdAt.text = transactions.createdAt.toString()
 
-        initListener()
+        val bundle =Bundle().apply {
+            putSerializable("transactions",transactions)
+        }
+        binding.editTransaction.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_transactionDetailFragment_to_editTransactionFragment,bundle
+            )
+        }
+
     }
 
     private fun getTransaction(id: Int) {
+        Log.d("detail_screen","getting_transaction")
         viewModel.getTransactionByID(id)
     }
 
 
     private fun initListener() {
-        binding.editTransaction.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_transactionDetailFragment_to_editTransactionFragment
-            )
-        }
+
 
     }
 
