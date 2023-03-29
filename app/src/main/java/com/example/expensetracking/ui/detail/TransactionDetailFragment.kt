@@ -2,9 +2,7 @@ package com.example.expensetracking.ui.detail
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -24,6 +22,11 @@ class TransactionDetailFragment : BaseFragment<FragmentTransactionDetailBinding,
     override val viewModel: TransactionViewmodel by activityViewModels()
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
@@ -37,6 +40,21 @@ class TransactionDetailFragment : BaseFragment<FragmentTransactionDetailBinding,
         return FragmentTransactionDetailBinding.inflate(layoutInflater)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_share,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_delete->{
+                viewModel.deleteTransactionById(args.transactions.id).run {
+                    findNavController().navigateUp()
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     private fun initViews() {
         Log.d("detail_screen","initialised")

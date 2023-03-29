@@ -3,6 +3,8 @@ package com.example.expensetracking.di
 import android.content.Context
 import androidx.room.Room
 import com.example.expensetracking.data.AppDatabase
+import com.example.expensetracking.data.datastore.UIModeDataStore
+import com.example.expensetracking.data.datastore.UIModeImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,4 +22,10 @@ class AppModule {
          Room.databaseBuilder(context,AppDatabase::class.java,"transaction.db")
             .fallbackToDestructiveMigration().build()
 
+
+    @Singleton
+    @Provides
+    fun providePreferenceManager(@ApplicationContext context: Context): UIModeImpl {
+        return UIModeDataStore(context)
+    }
 }

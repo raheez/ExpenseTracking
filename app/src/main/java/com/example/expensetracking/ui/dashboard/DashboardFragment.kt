@@ -2,9 +2,7 @@ package com.example.expensetracking.ui.dashboard
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -43,7 +41,38 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, TransactionView
         return FragmentDashboardBinding.inflate(inflater)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_ui,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.action_night_mode ->{
+                item.isChecked = !item.isChecked
+                setUiMode(item,item.isChecked)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setUiMode(item: MenuItem,isChecked : Boolean) {
+        if (isChecked){
+
+            viewModel.setDarkMode(true)
+            item.setIcon(R.drawable.ic_night)
+        }else{
+
+            viewModel.setDarkMode(false)
+            item.setIcon(R.drawable.ic_day)
+        }
+    }
 
     private fun setRecyclerView() {
         transactionAdapter = TransactionsAdapter()

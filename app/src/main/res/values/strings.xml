@@ -28,4 +28,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="edit_transaction_title">edit transaction</string>
     <string name="text_undo">Undo</string>
+    <string name="text_delete">delete</string>
+    <string name="text_share">share</string>
+    <string name="text_share_as_text">share as text</string>
+    <string name="text_share_as_image">share as image</string>
 </resources>

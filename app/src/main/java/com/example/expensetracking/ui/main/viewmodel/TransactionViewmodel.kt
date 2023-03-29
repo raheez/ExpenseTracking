@@ -2,6 +2,7 @@ package com.example.expensetracking.ui.main.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.expensetracking.data.datastore.UIModeImpl
 import com.example.expensetracking.model.Transactions
 import com.example.expensetracking.repo.TransactionRepo
 import com.example.expensetracking.utils.viewState.DetailState
@@ -13,7 +14,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TransactionViewmodel @Inject constructor(private val mRepo: TransactionRepo) : ViewModel() {
+class TransactionViewmodel @Inject constructor(private val mRepo: TransactionRepo,
+                                               private val uiModeDataStore : UIModeImpl
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<ViewState>(ViewState.Loading)
     val uiState: StateFlow<ViewState> = _uiState
@@ -23,6 +26,8 @@ class TransactionViewmodel @Inject constructor(private val mRepo: TransactionRep
 
     private val _transactionFilter = MutableStateFlow("Overall")
     val transactionFilter = _transactionFilter
+
+    val getUIMode = uiModeDataStore.uiMode
 
 
     fun addNewTransaction(transactions: Transactions) {
@@ -40,6 +45,12 @@ class TransactionViewmodel @Inject constructor(private val mRepo: TransactionRep
     fun deleteTransaction(transactions: Transactions) {
         viewModelScope.launch() {
             mRepo.delete(transactions)
+        }
+    }
+
+    fun deleteTransactionById(id: Int) {
+        viewModelScope.launch() {
+            mRepo.deleteById(id)
         }
     }
 
@@ -78,6 +89,13 @@ class TransactionViewmodel @Inject constructor(private val mRepo: TransactionRep
 
     fun overAll() {
         _transactionFilter.value = "Overall"
+    }
+
+    fun setDarkMode(isNightMode: Boolean) {
+
+        viewModelScope.launch {
+            uiModeDataStore.saveToDataStore(isNightMode =isNightMode)
+        }
     }
 
 }
